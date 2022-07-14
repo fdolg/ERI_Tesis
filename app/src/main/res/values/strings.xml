@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ERI</string>
+    <string name="str_direccion_dispositivo">macAddress</string>
+    <string name="str_mood">selec_mood</string>
+    <string name="str_flujo_obj">flujo_obj</string>
+    <string name="str_vol_obj">vol_obj</string>
+    <string name="str_min">min_obj</string>
+    <string name="str_seg">seg_obj</string>
+    <string name="str_IE_obj">IE</string>
+    <string name="str_t_insp">t_insp</string>
+    <string name="str_sensor">sensor</string>
+</resources>
