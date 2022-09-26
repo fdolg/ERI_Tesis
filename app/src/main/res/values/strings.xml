@@ -7,6 +7,7 @@
     <string name="str_min">min_obj</string>
     <string name="str_seg">seg_obj</string>
     <string name="str_IE_obj">IE</string>
-    <string name="str_t_insp">t_insp</string>
+    <string name="str_t_resp">t_insp</string>
     <string name="str_sensor">sensor</string>
+    <string name="str_reg">reg</string>
 </resources>

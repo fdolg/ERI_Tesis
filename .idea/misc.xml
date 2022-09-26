@@ -4,20 +4,31 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/drawable/custom_horizontal_progress.xml" value="0.1675" />
+        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/drawable/custom_horizontal_progress1.xml" value="0.1935" />
+        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/drawable/custom_horizontal_progress2.xml" value="0.1935" />
         <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/drawable/custom_progress.xml" value="0.1675" />
         <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/drawable/custom_progress2.xml" value="0.1755" />
         <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/drawable/custom_progress3.xml" value="0.1755" />
+        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/drawable/custom_progress4.xml" value="0.185" />
         <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/drawable/fondo_degradado.xml" value="0.1675" />
-        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_config_espirometria.xml" value="0.25" />
+        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/drawable/ic_baseline_exit_to_app_24.xml" value="0.185" />
+        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_acerca_de.xml" value="0.22" />
+        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_config_espirometria.xml" value="0.22" />
         <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_espirometria.xml" value="0.25" />
         <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_historial.xml" value="0.17916666666666667" />
-        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_login.xml" value="0.17916666666666667" />
-        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_login.xml" value="0.22" />
+        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_menu.xml" value="0.20416666666666666" />
-        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_pulsioximetria.xml" value="0.25" />
+        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_navigation.xml" value="0.20416666666666666" />
+        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_pc6_m1.xml" value="0.2" />
+        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_pc6_m2.xml" value="0.5" />
+        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_pc6_m3.xml" value="0.33" />
+        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_pulsioximetria.xml" value="0.33" />
         <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_registro_manual.xml" value="0.25" />
-        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_seleccion_historial.xml" value="0.17916666666666667" />
+        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_seleccion_historial.xml" value="0.22" />
         <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/activity_vincular.xml" value="0.20416666666666666" />
+        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/layout/nav_header.xml" value="0.20416666666666666" />
+        <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/menu/nav_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1955" />
         <entry key="..\:/Documentos/Facultad de Ingenieria/Tesis/app/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1755" />
       </map>

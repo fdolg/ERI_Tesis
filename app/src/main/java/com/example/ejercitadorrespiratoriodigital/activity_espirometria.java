@@ -13,9 +13,9 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.widget.CompoundButton;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,47 +23,44 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Locale;
+import java.util.Set;
 import java.util.UUID;
 
 public class activity_espirometria extends AppCompatActivity {
 
-    private static final int STATE_LISTENING = 1;
-    private static final int STATE_MESSAGE_RECIEVED = 2;
-    private String direccion;
+    private static final int STATE_LISTENING = 1,REQUEST_ENABLE_BT =10,STATE_MESSAGE_RECIEVED = 2;
     private BluetoothAdapter btAdaptador;
     private BluetoothSocket btSocket=null;
     private static final UUID btUUID=UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-    final int handlerState=0;
-    private Handler hBTcomunica;
-    private Switch swRegistro;
     private ComunicaThread comunicaThreadBT;
     private TextView tvFlujo,tvOxi,tvVolumen,tvStatus,tvCDown,tvIE;
-    private int numBytes,progressRR=0,min,seg,tInsp;
-    private long  segTot,segInsp,segEsp;
+    private int numBytes,progressRR=0,min,seg,tResp;
+    private long  segTot,segResp,segInsp,segEsp;
     private byte[] mmBuffer = new byte[1024];
-    private ProgressBar pbFlujo;
-    private ProgressBar pbVolumen;
-    private ProgressBar pbRR;
-    private String flujoMax,volMax,minObj,segObj,rIEobj,aux[];
+    private ProgressBar pbFlujo,pbVolumen,pbRR,pbOxi;
+    private String flujoMax,volMax,minObj,segObj,rIEobj,aux[],reg;
     private ManejoDB manejoDB;
     private CountDownTimer countDownTimer2,countDownTimerUp,countDownTimerDown;
+    private boolean Reg;
+    private ImageView iVStart;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_espirometria);
-
-        swRegistro= findViewById(R.id.swRegistro);
         tvFlujo=findViewById(R.id.tvFlujo);
         tvStatus=findViewById(R.id.tvStatus);
         tvVolumen=findViewById(R.id.tvVolumen);
         tvOxi=findViewById(R.id.tvOxi);
-        tvCDown=findViewById(R.id.tvCDown);
-        tvIE=findViewById(R.id.tvIE);
+        tvCDown=findViewById(R.id.tvCDown); tvCDown.setVisibility(View.INVISIBLE);
+        tvIE=findViewById(R.id.tvIE); tvIE.setVisibility(View.INVISIBLE);
         pbFlujo=findViewById(R.id.pbFlujo);
         pbVolumen=findViewById(R.id.pbVolumen);
-        pbRR=findViewById(R.id.pbRR);
+        pbRR=findViewById(R.id.pbRR); pbRR.setVisibility(View.INVISIBLE);
+        pbOxi=findViewById(R.id.pbSpO2); pbOxi.setMax(100);
         btAdaptador= BluetoothAdapter.getDefaultAdapter();
-
+        iVStart=findViewById(R.id.ivStart);
 
         Bundle bundleextras= getIntent().getExtras();
         flujoMax=bundleextras.getString(getResources().getString(R.string.str_flujo_obj));
@@ -71,24 +68,17 @@ public class activity_espirometria extends AppCompatActivity {
         minObj=bundleextras.getString(getResources().getString(R.string.str_min));
         segObj=bundleextras.getString(getResources().getString(R.string.str_seg));
         rIEobj=bundleextras.getString(getResources().getString(R.string.str_IE_obj));
-        tInsp= Integer.parseInt(bundleextras.getString(getResources().getString(R.string.str_t_insp)));
+        tResp= Integer.parseInt(bundleextras.getString(getResources().getString(R.string.str_t_resp)));
 
 
+        //¿Se harán registros?
+        reg=bundleextras.getString(getResources().getString(R.string.str_reg));
+        if (reg.equals("on")){Reg=true;} else {Reg = false; }
+
+        //Se inicializa la clase para manejo de BD
         manejoDB = new ManejoDB();
 
-        swRegistro.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if(isChecked){
-                    countDownTimer1.start();
-                    countDownTimer2.start();
-                }
-                else {
-                    countDownTimer1.cancel();
 
-                }
-            }
-        });
         //Se inicializa el cronómetro
 
         min= Integer.parseInt(minObj);
@@ -101,18 +91,22 @@ public class activity_espirometria extends AppCompatActivity {
         //Progress bar relación IE
         pbsetRatio();
 
+
+
     }
 
     private void pbsetRatio() {
-        segInsp=tInsp*1000;
+        segResp=tResp*1000;
 
         if (rIEobj.equals("1/2")){
-            segEsp=tInsp*2*1000;
-            pbRR.setMax(123*tInsp);
+            segInsp=segResp/3;
+            segEsp=segInsp*2;
+            pbRR.setMax(123*tResp/3);
         }
         else {
-            segEsp=tInsp*3*1000;
-            pbRR.setMax(185*tInsp);
+            segInsp=segResp/4;
+            segEsp=segInsp*3;
+            pbRR.setMax(185*tResp/4);
         }
         pbRR.setProgress(0);
     }
@@ -120,24 +114,27 @@ public class activity_espirometria extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
+        VerificarEstadoBt();
         BluetoothDevice dispositivo=btAdaptador.getRemoteDevice(usuario.BTdirec);
 
         try {
 
             btSocket= dispositivo.createInsecureRfcommSocketToServiceRecord(btUUID);
-            Toast.makeText(getApplicationContext(),"Direccion:" +usuario.BTdirec,Toast.LENGTH_SHORT).show();
+
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(getApplicationContext(),"Falló la creación de soccket",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Encienda el dispositivo",Toast.LENGTH_SHORT).show();
+
         }
         try {
             btSocket.connect();
 
+
         } catch (IOException e) {
-            Log.d("ErrorContect","Error de conexión: " +e.toString());
             e.printStackTrace();
             Toast.makeText(getApplicationContext(),"Error al conectar con dispositivo" ,Toast.LENGTH_LONG).show();
+            Intent intentMenu = new Intent(getApplicationContext(), activity_menu.class);
+            startActivity(intentMenu);
 
             try {
                 btSocket.close();
@@ -148,11 +145,40 @@ public class activity_espirometria extends AppCompatActivity {
 
         comunicaThreadBT= new ComunicaThread(btSocket);
         comunicaThreadBT.start();
-        startChronometer();
-        start_pbIE();
 
     }
 
+    private void VerificarEstadoBt() {
+
+        if(btAdaptador== null)
+        {
+            Toast.makeText(getApplicationContext(),"Su equipo no cuenta con Bluetooth",Toast.LENGTH_SHORT).show();
+        }else {
+            if(btAdaptador.isEnabled()){
+                GetBtDireccion();
+
+            }else
+            {
+                //Pedir al usuario que active Bluetooth
+                Intent haBTint = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(haBTint,REQUEST_ENABLE_BT);
+            }
+        }
+    }
+
+
+    private void GetBtDireccion() {
+        Set<BluetoothDevice> DispEmp= btAdaptador.getBondedDevices();
+        if(DispEmp.size() > 0)
+        {
+            for(BluetoothDevice dispositivo:DispEmp){
+
+                if (dispositivo.getName().equals("ESP32_ERI")){
+                    usuario.BTdirec=dispositivo.getAddress();
+                }
+            }
+        }
+    }
 
 
     @Override
@@ -182,14 +208,6 @@ public class activity_espirometria extends AppCompatActivity {
             }
         }
 
-        public void write(String input)  {
-
-            try {
-                moutputStream.write(input.getBytes());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
         public void run() {
 
 
@@ -236,10 +254,23 @@ public class activity_espirometria extends AppCompatActivity {
         tvVolumen.setText(aux[1]);
         tvOxi.setText(aux[3]);
 
-        setpbFlujo(Integer.parseInt(aux[0]), Integer.parseInt(aux[1]));
+        setpb(Integer.parseInt(aux[0]), Integer.parseInt(aux[1]),Integer.parseInt(aux[3]));
+        registrar(Integer.parseInt(aux[0]));
     }
 
-    public void setpbFlujo(int flujo,int volumen)
+    //Registro en la BD mediante Umbral
+    private void registrar(int flujo) {
+        int threshold = 200;
+
+        if (Reg && Math.abs(Integer.parseInt(flujoMax)-flujo)<threshold){
+            String Flujo = (String) tvFlujo.getText();
+            String Volumen = (String) tvVolumen.getText();
+            manejoDB.registrarEspEnDB(Flujo,Volumen);
+        }
+
+    }
+
+    public void setpb(int flujo,int volumen,int oxi)
     {
 
         pbFlujo.setProgress( flujo);
@@ -247,6 +278,8 @@ public class activity_espirometria extends AppCompatActivity {
 
         pbVolumen.setProgress(volumen);
         pbVolumen.setMax(Integer.parseInt(volMax));
+
+        pbOxi.setProgress(oxi);
 
     }
 
@@ -294,7 +327,7 @@ public class activity_espirometria extends AppCompatActivity {
 
 
 
-    //Contador de los registros en la BD
+    // Registros en la BD mediante contador
     CountDownTimer countDownTimer1=new CountDownTimer(1000*60,10*1000) {
         @Override
         public void onTick(long l){
@@ -331,7 +364,7 @@ public class activity_espirometria extends AppCompatActivity {
         builder.setMessage("Sesión terminada");
         builder.show();
         try {
-            Thread.sleep(1500);
+            Thread.sleep(100);
             Intent intentMenu = new Intent(getApplicationContext(), activity_menu.class);
             startActivity(intentMenu);
 
@@ -349,6 +382,19 @@ public class activity_espirometria extends AppCompatActivity {
         tvCDown.setText(timeLeftFormat);
     }
 
+    public void onClickComenzar(View view) {
+        iVStart.setVisibility(View.INVISIBLE);
+        tvCDown.setVisibility(View.VISIBLE);
+        tvIE.setVisibility(View.VISIBLE);
+        pbRR.setVisibility(View.VISIBLE);
+        startChronometer();
+        start_pbIE();
+
+    }
+    public void onClickAtras(View view) {
+        Intent intentMenu = new Intent(getApplicationContext(), activity_menu.class);
+        startActivity(intentMenu);
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) { // Método para controlar el bóton BACK

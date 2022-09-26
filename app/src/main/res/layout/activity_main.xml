@@ -14,7 +14,7 @@
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center"
         android:text="Ejercitador Respiratorio Post COVID-19"
-        android:textColor="#020B3C"
+        android:textColor="@color/white"
         android:textSize="40dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,10 +25,10 @@
         app:layout_constraintVertical_bias="0.321" />
 
     <Button
-        android:id="@+id/btnMenu"
-        android:layout_width="241dp"
-        android:layout_height="78dp"
-        android:backgroundTint="#0B3455"
+        android:id="@+id/btnIngresar"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/color4"
         android:onClick="onClickLogin"
         android:text="Ingresar"
         android:textSize="20dp"
@@ -39,18 +39,19 @@
         app:layout_constraintVertical_bias="0.532" />
 
     <Button
-        android:id="@+id/btnEspirometria"
-        android:layout_width="238dp"
-        android:layout_height="82dp"
-        android:backgroundTint="#0B3455"
+        android:id="@+id/btnAcercaDe"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/color4"
+        android:onClick="onClickAcercaDe"
         android:text="Acerca de"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.835" />
+        app:layout_constraintVertical_bias="0.755" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -64,8 +65,8 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="149dp"
-        android:layout_height="292dp"
+        android:layout_width="150dp"
+        android:layout_height="290dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

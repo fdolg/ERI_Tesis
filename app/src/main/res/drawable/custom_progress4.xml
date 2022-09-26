@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@android:id/background">
+        <shape android:shape="ring"
+            android:thickness="10dp"
+            android:useLevel="false">
+
+            <solid android:color="#D2EDFC"></solid>
+        </shape>
+
+    </item>
+    <item android:id="@android:id/progress">
+        <shape android:shape="ring"
+            android:thickness="10dp"
+            android:useLevel="true">
+            <gradient android:startColor="@color/teal_200"
+                android:centerColor="@color/purple_500"
+                android:endColor="@color/purple_700">
+            </gradient>
+        </shape>
+    </item>
+
+</layer-list>

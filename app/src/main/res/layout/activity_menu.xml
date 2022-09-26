@@ -7,16 +7,62 @@
     tools:context=".activity_menu"
     android:background="@drawable/fondo_degradado">
 
+    <Button
+        android:id="@+id/btnEspirometria"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/color4"
+        android:fontFamily="sans-serif-smallcaps"
+        android:onClick="onClickEspirometria"
+        android:text="Espirometría"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.565"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.208" />
+
+    <Button
+        android:id="@+id/btnRegistro"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/color4"
+        android:onClick="onClickPC6M"
+        android:text="PC6M"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.577"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.605" />
+
+    <Button
+        android:id="@+id/btnHistorial"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/color4"
+        android:onClick="onClickHistorial"
+        android:text="Historial"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.577"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.791" />
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="154dp"
         android:layout_height="337dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintHorizontal_bias="0.237"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.076"
         app:srcCompat="@drawable/lungs" />
 
     <TextView
@@ -26,75 +72,60 @@
         android:fontFamily="cursive"
         android:gravity="center"
         android:text="Menú"
-        android:textColor="#020B3C"
+        android:textColor="@color/white"
         android:textSize="60dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.651"
+        app:layout_constraintHorizontal_bias="0.69"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.197" />
-
-    <Button
-        android:id="@+id/btnHistorial"
-        android:layout_width="238dp"
-        android:layout_height="82dp"
-        android:backgroundTint="#0B3455"
-        android:text="Historial"
-        android:onClick="onClickHistorial"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.646" />
+        app:layout_constraintVertical_bias="0.243" />
 
     <Button
         android:id="@+id/btnOximetria"
-        android:layout_width="238dp"
-        android:layout_height="82dp"
-        android:backgroundTint="#0B3455"
-        android:text="Pulsioximetría"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/color4"
         android:onClick="onClickPox"
+        android:text="Pulsioximetría"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.577"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.416" />
+        app:layout_constraintVertical_bias="0.415" />
 
-    <Button
-        android:id="@+id/btnEspirometria"
-        android:layout_width="238dp"
-        android:layout_height="82dp"
-        android:backgroundTint="#0B3455"
-        android:fontFamily="sans-serif-smallcaps"
-        android:onClick="onClickEspirometria"
-        android:text="Espirometría"
-        android:textSize="20dp"
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="74dp"
+        android:layout_height="80dp"
+        android:adjustViewBounds="false"
+        android:backgroundTint="@color/color1"
+        android:scaleType="centerCrop"
+        android:onClick="onClickMain"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.198" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_baseline_exit_to_app_24" />
 
-    <Button
-        android:id="@+id/btnRegistro"
-        android:layout_width="238dp"
-        android:layout_height="82dp"
-        android:backgroundTint="#0B3455"
-        android:text="Registrar lectura"
-        android:onClick="onClickRegistroManual"
+    <TextView
+        android:id="@+id/tvUsuario"
+        android:layout_width="349dp"
+        android:layout_height="30dp"
+        android:fontFamily="sans-serif-light"
+        android:text="ID: "
+        android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.887" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.112" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

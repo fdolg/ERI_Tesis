@@ -20,7 +20,9 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -94,7 +96,22 @@ public class ManejoDB {
 
                                     }
                                 }
+                                if (Mood.equals("pc6m"))
+                                {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                        if ((String)document.get("basal")!=null){
+                                            registros.add("Fecha: "+(String) document.get("fecha")+"\n"+"Oxigenación basal (%): "+
+                                                    (String) document.get("basal")+"\n"+
+                                                    "Oxigenación PC6M (%): "+(String) document.get("pc6m")+"\n"+"Diferencia SpO2 (%): "+
+                                                    (String) document.get("dif")+"\n"); // Se concatenan los campos en el formato requerido
+                                            registroFecha.add((String) document.get("fecha"));
+                                            registroValor.add((String) document.get("basal")+","+(String) document.get("pc6m"));
+                                            registroID.add(document.getId());
+                                        }
 
+                                    }
+                                }
+                                Collections.sort(registros);
                                 ArrayAdapter<String > adapter =new ArrayAdapter<>(context,android.R.layout.simple_list_item_1,registros);
                                 lstRegistros.setAdapter(adapter); // Se emplea el adaptador para visualizar registros
                             }else{
@@ -131,7 +148,9 @@ public class ManejoDB {
         CollectionReference lecturas=db.collection("lecturasERI"); // Se señala la colección a usar
         Map<String,Object> data =new HashMap<>();
 
-        String fecha = new Date().toString();
+        String pattern = "dd-MM-yyyy HH:mm:ss";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String fecha = simpleDateFormat.format(new Date());
 
        if(fecha.equals("")==false && flujo.equals("")==false && volumen.equals("")==false){ // Verificación de datos
             data.put("email", usuario.email);
@@ -147,13 +166,33 @@ public class ManejoDB {
         CollectionReference lecturas=db.collection("lecturasERI"); // Se señala la colección a usar
         Map<String,Object> data =new HashMap<>();
 
-        String fecha = new Date().toString();
+        String pattern = "dd-MM-yyyy HH:mm:ss";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String fecha = simpleDateFormat.format(new Date());
 
         if(fecha.equals("")==false && oxigenacion.equals("")==false && pulso.equals("")==false){ // Verificación de datos
             data.put("email", usuario.email);
             data.put("fecha", fecha);
             data.put("oxigenacion", oxigenacion);
             data.put("pulso", pulso);
+            lecturas.document().set(data); // Se registran datos
+        }
+
+    }
+    public void registrarPC6MEnDB(String basalOx, String afterOx,String dif){
+        CollectionReference lecturas=db.collection("lecturasERI"); // Se señala la colección a usar
+        Map<String,Object> data =new HashMap<>();
+
+        String pattern = "dd-MM-yyyy HH:mm:ss";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        String fecha = simpleDateFormat.format(new Date());
+
+        if(fecha.equals("")==false ){ // Verificación de datos
+            data.put("email", usuario.email);
+            data.put("fecha", fecha);
+            data.put("basal", basalOx);
+            data.put("pc6m", afterOx);
+            data.put("dif", dif);
             lecturas.document().set(data); // Se registran datos
         }
 

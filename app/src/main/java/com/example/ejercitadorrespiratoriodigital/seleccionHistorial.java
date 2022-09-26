@@ -30,6 +30,9 @@ public class seleccionHistorial extends AppCompatActivity {
             case R.id.btnHOxi:
                 this.mood="oxi";
                 break;
+            case R.id.btnPC6M:
+                this.mood="pc6m";
+                break;
         }
         Intent intentHistorial = new Intent(getApplicationContext(), Historial.class);
         intentHistorial.putExtra(getResources().getString(R.string.str_mood), mood);
@@ -43,5 +46,10 @@ public class seleccionHistorial extends AppCompatActivity {
             startActivity(intentMenu);
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    public void onClickAtras(View view) {
+        Intent intentMenu = new Intent(getApplicationContext(), activity_menu.class);
+        startActivity(intentMenu);
     }
 }

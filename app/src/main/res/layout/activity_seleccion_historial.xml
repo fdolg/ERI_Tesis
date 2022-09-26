@@ -8,48 +8,92 @@
     android:background="@drawable/fondo_degradado">
 
     <Button
-        android:id="@+id/btnHEsp"
-        android:layout_width="241dp"
-        android:layout_height="78dp"
-        android:backgroundTint="#0B3455"
-        android:onClick="onClick"
-        android:text="Espirometría"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
-
-    <Button
         android:id="@+id/btnHOxi"
-        android:layout_width="241dp"
-        android:layout_height="78dp"
-        android:backgroundTint="#0B3455"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/color4"
         android:onClick="onClick"
         android:text="Pulsioximetría"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.71" />
+        app:layout_constraintVertical_bias="0.739" />
+
+    <Button
+        android:id="@+id/btnPC6M"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/color4"
+        android:onClick="onClick"
+        android:text="PC6M"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.855" />
+
+    <Button
+        android:id="@+id/btnHEsp"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/color4"
+        android:onClick="onClick"
+        android:text="Espirometría"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.622" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="150dp"
+        android:layout_height="290dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.369"
+        app:srcCompat="@drawable/lungs" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="cursive"
+        android:fontFamily="sans-serif-smallcaps"
         android:gravity="center"
         android:text="Tipo de Historial"
-        android:textColor="#020B3C"
-        android:textSize="60dp"
+        android:textColor="@color/white"
+        android:textSize="40dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.202" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="67dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/color1"
+        android:scaleType="centerCrop"
+        android:onClick="onClickAtras"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

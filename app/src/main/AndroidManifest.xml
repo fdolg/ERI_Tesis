@@ -14,38 +14,58 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EjercitadorRespiratorioDigital">
         <activity
+            android:name=".AcercaDe"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".PC6M_3"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".PC6M_2"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".PC6M_1"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+        <activity
             android:name=".activity_pulsioximetria"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".seleccionHistorial"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".borrarRegistro"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Historial"
-            android:exported="false" />
-        <activity
-            android:name=".registroManual"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".Login"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".config_espirometria"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity_espirometria"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".activity_menu"
-            android:exported="false" />
-        <activity
-            android:name=".activity_vincular"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

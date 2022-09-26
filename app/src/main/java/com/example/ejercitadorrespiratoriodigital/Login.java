@@ -41,7 +41,6 @@ public class Login extends AppCompatActivity {
         Matcher mather = pattern.matcher(email); //Validación del correo, true (correcto) o false (incorrecto)
 
         if (mather.find()) {
-            Toast.makeText(getApplicationContext(), "Email válido", Toast.LENGTH_SHORT).show();
             return true;
         } else {
             Toast.makeText(getApplicationContext(), "Email inválido", Toast.LENGTH_LONG).show();

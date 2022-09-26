@@ -52,9 +52,13 @@ public class Historial extends AppCompatActivity {
         if (mood.equals("esp")){
             titulo.setText("Historial del paciente: Espirometría ");
         }
-        else
+        if (mood.equals("oxi"))
         {
             titulo.setText("Historial del paciente: Pulsioximetría");
+        }
+        if (mood.equals("pc6m"))
+        {
+            titulo.setText("Historial del paciente: PC6M");
         }
     }
 
